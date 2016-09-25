@@ -1,0 +1,45 @@
+nginx:
+    build: ./nginx/
+    ports:
+        - 80:80
+    links:
+        - php
+    volumes_from:
+        - app
+
+php:
+    build: ./php/
+    expose:
+        - 9000
+    links:
+        - mysql
+    volumes_from:
+        - app
+    environment:
+        PHP_XDEBUG_ENABLED: 1
+        XDEBUG_CONFIG: idekey=PHPSTORM
+        PHP_IDE_CONFIG: "serverName=spot2"
+
+app:
+    image: php:7.0-fpm
+    volumes:
+            - ../.:/var/www/html
+    command: "true"
+
+mysql:
+    image: mysql:latest
+    ports:
+        - 3306:3306 
+    volumes_from:
+        - data
+    environment:
+        MYSQL_ROOT_PASSWORD: secret
+        MYSQL_DATABASE: spot_test
+        MYSQL_USER: spot_test
+        MYSQL_PASSWORD: spot_test
+
+data:
+    image: mysql:latest
+    volumes:
+        - /var/lib/mysql
+    command: "true"
