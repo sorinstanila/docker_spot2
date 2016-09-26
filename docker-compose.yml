@@ -27,7 +27,7 @@ app:
     command: "true"
 
 mysql:
-    image: mysql:latest
+    build: ./mysql/
     ports:
         - 3306:3306 
     volumes_from:
