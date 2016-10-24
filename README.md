@@ -1,5 +1,5 @@
 # docker_spot2
-Docker instances to speed up develop&amp;testing  using spot2. 
+Docker instances to speed up develop&amp;testing  using [Spot2](https://github.com/vlucas/spot2). 
 
 To use the repo you clone the repo as submodule to the root of the project:
 
